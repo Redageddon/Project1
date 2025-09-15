@@ -1,6 +1,9 @@
+using osu.Framework;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Shapes;
+using osu.Framework.Graphics.UserInterface;
+using osu.Framework.Platform;
 using osu.Framework.Screens;
 using osuTK.Graphics;
 
@@ -13,12 +16,9 @@ public partial class MainScreen : Screen
     {
         this.InternalChildren =
         [
-            new Box
-            {
-                Colour = new Color4(55, 55, 55, 255),
-                RelativeSizeAxes = Axes.Both,
-            },
+            new Background(),
             new SpinningText(),
+            new ExitButton(),
         ];
     }
 }
