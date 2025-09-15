@@ -6,9 +6,9 @@ using osuTK.Graphics;
 
 namespace Project1.Game.Screens.Main;
 
-public partial class NextScreenButton : BasicButton
+public partial class SecondScreenButton : BasicButton
 {
-    public NextScreenButton(Action onPressed)
+    public SecondScreenButton(Action onPressed)
     {
         this.Action = onPressed;
         this.Anchor = Anchor.Centre;

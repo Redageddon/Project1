@@ -23,7 +23,7 @@ public partial class Project1GameBase : osu.Framework.Game
     {
         this.Resources.AddStore(new DllResourceStore(typeof(Project1Resources).Assembly));
         
-        Size windowSize = new Size(1920, 1080) * 1;
+        Size windowSize = new Size(1920, 1080) * 2;
         config.SetValue(FrameworkSetting.SizeFullscreen, windowSize);
         config.SetValue(FrameworkSetting.ConfineMouseMode, ConfineMouseMode.Never);
         config.SetValue(FrameworkSetting.MinimiseOnFocusLossInFullscreen, false);

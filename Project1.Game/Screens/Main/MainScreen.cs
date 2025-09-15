@@ -12,8 +12,7 @@ public partial class MainScreen : Screen
         this.InternalChildren =
         [
             new Background(),
-            new ExitButton(),
-            new NextScreenButton(() => this.Push(new SecondScreen())),
+            new SecondScreenButton(() => this.Push(new SecondScreen())),
         ];
     }
 }
