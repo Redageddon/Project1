@@ -11,9 +11,9 @@ public partial class BackButton : BasicButton
     public BackButton(Action onPressed)
     {
         this.Action = onPressed;
-        this.Anchor = Anchor.BottomCentre;
-        this.Origin = Anchor.BottomCentre;
-        this.Text = "Exit";
+        this.Anchor = Anchor.BottomLeft;
+        this.Origin = Anchor.BottomLeft;
+        this.Text = "OK";
         this.BackgroundColour = Color4.Black;
         this.Size = new Vector2(100, 40);
         this.HoverColour = Color4.Gray;

@@ -13,7 +13,7 @@ public partial class SecondScreenButton : BasicButton
         this.Action = onPressed;
         this.Anchor = Anchor.Centre;
         this.Origin = Anchor.Centre;
-        this.Text = "Next Screen";
+        this.Text = "Hello";
         this.BackgroundColour = Color4.Black;
         this.Size = new Vector2(400, 40);
         this.HoverColour = Color4.Gray;
