@@ -30,11 +30,11 @@ jobs:
 
     - name: Publish executable (Windows)
       if: matrix.os == 'windows-latest'
-      run: dotnet publish Project1.Desktop/Project1.Desktop.csproj -c Release -r win-x64 --self-contained true -o ./publish
+      run: dotnet publish Project1.Desktop/Project1.Desktop.csproj -c Release -r win-x64 -o ./publish
 
     - name: Publish executable (Linux)
       if: matrix.os == 'ubuntu-latest'
-      run: dotnet publish Project1.Desktop/Project1.Desktop.csproj -c Release -r linux-x64 --self-contained true -o ./publish
+      run: dotnet publish Project1.Desktop/Project1.Desktop.csproj -c Release -r linux-x64 -o ./publish
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
