@@ -17,8 +17,8 @@ public partial class MainScreen : Screen
         this.InternalChildren =
         [
             new Background(),
-            new SpinningText(),
             new ExitButton(),
+            new SpinningText(),
         ];
     }
 }

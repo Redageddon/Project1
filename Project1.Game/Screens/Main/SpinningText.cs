@@ -33,7 +33,7 @@ public partial class SpinningText : CompositeDrawable
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
                     Size = new Vector2(400, 100),
-                    Colour = new Color4(0, 0, 0, 255),
+                    Colour = Color4.Black,
                 },
                 new SpriteText
                 {
