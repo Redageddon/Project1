@@ -2,42 +2,31 @@ name: Build and Package
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-latest, ubuntu-latest]
+    runs-on: windows-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: "9.0.x"
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
 
-    - name: Restore dependencies
-      run: dotnet restore Project1.sln
+      - name: Publish Windows executable
+        run: dotnet publish Project1.Desktop/Project1.Desktop.csproj -c Release -r win-x64 -o ./publish/windows
 
-    - name: Build solution
-      run: dotnet build Project1.sln --configuration Release --no-restore
+      - name: Publish Linux executable
+        run: dotnet publish Project1.Desktop/Project1.Desktop.csproj -c Release -r linux-x64 -o ./publish/linux
 
-    - name: Publish executable (Windows)
-      if: matrix.os == 'windows-latest'
-      run: dotnet publish Project1.Desktop/Project1.Desktop.csproj -c Release -r win-x64 -o ./publish
-
-    - name: Publish executable (Linux)
-      if: matrix.os == 'ubuntu-latest'
-      run: dotnet publish Project1.Desktop/Project1.Desktop.csproj -c Release -r linux-x64 -o ./publish
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: Project1-${{ matrix.os }}
-        path: ./publish
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Project1
+          path: ./publish
