@@ -1,5 +1,6 @@
 using osu.Framework.Allocation;
 using osu.Framework.Screens;
+using Project1.Game.Screens.Second;
 
 namespace Project1.Game.Screens.Main;
 
@@ -12,7 +13,7 @@ public partial class MainScreen : Screen
         [
             new Background(),
             new ExitButton(),
-            new SpinningText(),
+            new NextScreenButton(() => this.Push(new SecondScreen())),
         ];
     }
 }
