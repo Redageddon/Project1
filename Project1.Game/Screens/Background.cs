@@ -13,19 +13,15 @@ public partial class Background : CompositeDrawable
     private void Load()
     {
         this.RelativeSizeAxes = Axes.Both;
-        
-        this.InternalChild = new Container
-        {
-            RelativeSizeAxes = Axes.Both,
-            Children =
-            [
-                new Box
-                {
-                    Colour = new Color4(55, 55, 55, 255),
-                    RelativeSizeAxes = Axes.Both,
-                },
-                new ExitButton(),
-            ],
-        };
+
+        this.InternalChildren =
+        [
+            new Box
+            {
+                Colour = new Color4(55, 55, 55, 255),
+                RelativeSizeAxes = Axes.Both,
+            },
+            new ExitButton(),
+        ];
     }
 }
