@@ -26,25 +26,25 @@ public partial class DataGrid : CompositeDrawable
                 RelativeSizeAxes = Axes.Both,
                 Colour = new Colour4(100, 100, 100, 255),
             },
-            new Header("Habit", "Date", textSize),
-            new BasicScrollContainer
+            new Container
             {
                 RelativeSizeAxes = Axes.Both,
-                Padding = new MarginPadding { Top = textSize * 2f },
-                ScrollbarVisible = true,
-                Child = new Container
+                Padding = new MarginPadding { Top = textSize },
+                Child = new BasicScrollContainer
                 {
-                    RelativeSizeAxes = Axes.X,
-                    AutoSizeAxes = Axes.Y,
+                    RelativeSizeAxes = Axes.Both,
+                    ScrollbarVisible = true,
                     Child = this.dataContainer = new FillFlowContainer
                     {
                         Direction = FillDirection.Vertical,
-                        AutoSizeAxes = Axes.Y,
                         RelativeSizeAxes = Axes.X,
+                        AutoSizeAxes = Axes.Y,
                         Spacing = new Vector2(textSize),
+                        Padding = new MarginPadding { Top = textSize / 2f, Bottom = textSize / 2f },
                     },
                 },
             },
+            new Header("Habit", "Date", textSize),
         ];
     }
 

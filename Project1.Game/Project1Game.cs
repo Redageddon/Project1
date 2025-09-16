@@ -1,7 +1,6 @@
 ﻿using osu.Framework.Allocation;
 using osu.Framework.Screens;
 using Project1.Game.Screens.Main;
-using Project1.Game.Screens.Second;
 
 namespace Project1.Game;
 
@@ -19,7 +18,6 @@ public partial class Project1Game : Project1GameBase
     {
         base.LoadComplete();
 
-        this.screenStack.Push(new SecondScreen());
-        //this.screenStack.Push(new MainScreen());
+        this.screenStack.Push(new MainScreen());
     }
 }

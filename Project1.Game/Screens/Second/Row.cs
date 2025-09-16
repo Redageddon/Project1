@@ -11,7 +11,7 @@ namespace Project1.Game.Screens.Second
         {
             this.RelativeSizeAxes = Axes.X;
             this.AutoSizeAxes = Axes.Y;
-
+            
             this.Content = new[]
             {
                 new[]
@@ -29,8 +29,7 @@ namespace Project1.Game.Screens.Second
                 RelativeSizeAxes = Axes.X,
                 AutoSizeAxes = Axes.Y,
                 Masking = true,
-                CornerRadius = 4,
-                BorderThickness = 3,
+                BorderThickness = 4,
                 BorderColour = Colour4.Black,
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,

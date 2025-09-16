@@ -11,7 +11,7 @@ public partial class SecondScreen : Screen
     {
         DataGrid dataGrid = new(40);
 
-        Random random = new Random();
+        Random random = new();
         
         for (int i = 0; i < 100; i++)
         {
