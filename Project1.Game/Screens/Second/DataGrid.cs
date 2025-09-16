@@ -29,6 +29,8 @@ public partial class DataGrid : CompositeDrawable
             new Container
             {
                 RelativeSizeAxes = Axes.Both,
+                Anchor = Anchor.BottomCentre,
+                Origin = Anchor.BottomCentre,
                 Padding = new MarginPadding { Top = textSize },
                 Child = new BasicScrollContainer
                 {
