@@ -8,13 +8,17 @@ namespace Project1.Game.Screens.Second;
 
 public partial class ListControls : CompositeDrawable
 {
+    private TextInput habitInput;
+    private BasicButton addButton;
+    private Action<string> passthroughAction;
+    
     public ListControls(Action<string> action)
     {
+        this.passthroughAction = action;
         this.RelativeSizeAxes = Axes.Both;
         this.Size = new Vector2(0.8f, 0.1f);
         this.Anchor = Anchor.BottomCentre;
         this.Origin = Anchor.BottomCentre;
-        BasicTextBox habitInput;
         
         this.InternalChild = new GridContainer
         {
@@ -23,22 +27,35 @@ public partial class ListControls : CompositeDrawable
             {
                 new Drawable[]
                 {
-                    habitInput = new BasicTextBox
+                    this.habitInput = new TextInput
                     {
+                        Padding = new MarginPadding(10),
                         RelativeSizeAxes = Axes.Both,
                         BorderColour = Colour4.Black,
                         BorderThickness = 2,
                     },
-                    new BasicButton
+                    this.addButton = new BasicButton
                     {
+                        Padding = new MarginPadding(10),
                         Masking = true,
                         RelativeSizeAxes = Axes.Both,
                         BorderColour = Colour4.Green,
                         BorderThickness = 2,
-                        Action = () => action(habitInput.Text),
+                        Text = "Add Habit",
                     },
                 },
             },
         };
-    }   
+
+        this.addButton.Action = this.AddAction;
+    }
+
+    private void AddAction()
+    {
+        if (!string.IsNullOrEmpty(this.habitInput.Text))
+        {
+            this.passthroughAction(this.habitInput.Text);
+            this.habitInput.Text = "";
+        }
+    }
 }
