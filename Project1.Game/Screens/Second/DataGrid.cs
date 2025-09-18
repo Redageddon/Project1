@@ -1,4 +1,6 @@
-﻿using osu.Framework.Graphics;
+﻿using System.Collections.Generic;
+using osu.Framework.Extensions.IEnumerableExtensions;
+using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osuTK;
@@ -50,8 +52,13 @@ public partial class DataGrid : CompositeDrawable
         ];
     }
 
-    public void Add(string habit, string date)
+    public void Add(Habit habit)
     {
-        this.dataContainer.Add(new Row(habit, date, this.textSize));
+        this.dataContainer.Add(new Row(habit.Value, habit.Date.ToString(), this.textSize));
+    }
+    
+    public void AddRange(IEnumerable<Habit> habits)
+    {
+        habits.ForEach(this.Add);
     }
 }

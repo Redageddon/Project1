@@ -7,6 +7,6 @@
         <ProjectReference Include="..\Project1.Resources\Project1.Resources.csproj"/>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="ppy.osu.Framework" Version="2025.908.0"/>
+        <PackageReference Include="ppy.osu.Framework" Version="2025.908.0" />
     </ItemGroup>
 </Project>

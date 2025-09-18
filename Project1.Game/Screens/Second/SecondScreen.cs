@@ -1,17 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
 using osu.Framework.Allocation;
-using osu.Framework.Graphics;
-using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics.UserInterface;
-using osu.Framework.Input;
 using osu.Framework.Screens;
-using osuTK;
 
 namespace Project1.Game.Screens.Second;
 
 public partial class SecondScreen : Screen
 {
     private DataGrid dataGrid;
+    private List<Habit> habits = [];
     
     [BackgroundDependencyLoader]
     private void Load()
@@ -23,10 +22,26 @@ public partial class SecondScreen : Screen
             this.dataGrid = new DataGrid(40),
             new ListControls(this.Add),
         ];
+
+        if (File.Exists("habits.json"))
+        {
+            this.habits = JsonConvert.DeserializeObject<List<Habit>>(File.ReadAllText("habits.json"));
+            this.dataGrid.AddRange(this.habits);
+        }
     }
 
-    public void Add(string habit)
+    public void Add(string habitType)
     {
-        this.dataGrid.Add(habit, DateTime.Now.ToString());
+        Habit habit = new()
+        {
+            Value = habitType, 
+            Date = DateTime.Now,
+        };
+        
+        this.dataGrid.Add(habit);
+        this.habits.Add(habit);
+
+        string data = JsonConvert.SerializeObject(this.habits);
+        File.WriteAllText("habits.json", data);
     }
 }

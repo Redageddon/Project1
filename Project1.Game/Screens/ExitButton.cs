@@ -5,7 +5,7 @@ using osu.Framework.Platform;
 using osuTK;
 using osuTK.Graphics;
 
-namespace Project1.Game.Screens.Main;
+namespace Project1.Game.Screens;
 
 public partial class ExitButton : BasicButton
 {

@@ -1,4 +1,3 @@
-using System.Drawing;
 using osu.Framework.Allocation;
 using osu.Framework.Configuration;
 using osu.Framework.Graphics;
@@ -27,6 +26,6 @@ public partial class Project1GameBase : osu.Framework.Game
         //config.SetValue(FrameworkSetting.SizeFullscreen, windowSize);
         config.SetValue(FrameworkSetting.ConfineMouseMode, ConfineMouseMode.Never);
         config.SetValue(FrameworkSetting.MinimiseOnFocusLossInFullscreen, false);
-        config.SetValue(FrameworkSetting.WindowMode, WindowMode.Fullscreen);
+        config.SetValue(FrameworkSetting.WindowMode, WindowMode.Borderless);
     }
 }
