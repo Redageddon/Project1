@@ -26,6 +26,20 @@ public partial class HabitTextBox : BasicTextBox
         };
     }
 
+    protected override Drawable GetDrawableCharacter(char c)
+    {
+        return new FallingDownContainer
+        {
+            AutoSizeAxes = Axes.Both,
+            Child = new SpriteText
+            {
+                Colour = Style.Text,
+                Text = c.ToString(),
+                Font = FrameworkFont.Condensed.With(size: this.FontSize),
+            },
+        };
+    }
+
     protected override SpriteText CreatePlaceholder()
     {
         return new FadingPlaceholderText
@@ -53,7 +67,7 @@ public partial class HabitTextBox : BasicTextBox
 
     protected override void OnFocus(FocusEvent e)
     {
-        this.Colour = Style.Selected;
+        this.Colour = Style.Text;
         base.OnFocus(e);
     }
 

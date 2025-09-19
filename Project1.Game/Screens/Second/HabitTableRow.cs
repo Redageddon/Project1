@@ -4,12 +4,17 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Input.Events;
+using osuTK.Input;
+using Project1.Game.IO;
 
 namespace Project1.Game.Screens.Second;
 
 public partial class HabitTableRow(Habit habit) : CompositeDrawable
 {
     private Box backgroundBox = null!;
+    
+    [Resolved]
+    private HabitStorage HabitStorage { get; set; } = null!;
 
     public Habit Habit { get; } = habit;
 
@@ -80,5 +85,18 @@ public partial class HabitTableRow(Habit habit) : CompositeDrawable
     {
         this.backgroundBox.FadeColour(Style.DrawableUnderlay2, 150, Easing.OutQuint);
         base.OnHoverLost(e);
+    }
+    
+    protected override bool OnMouseDown(MouseDownEvent e)
+    {
+        if (e.Button == MouseButton.Right)
+        {
+            this.HabitStorage.Habits.Remove(this.Habit);
+            this.HabitStorage.Save();
+            
+            return true;
+        }
+
+        return base.OnMouseDown(e);
     }
 }
