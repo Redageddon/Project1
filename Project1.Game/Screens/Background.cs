@@ -2,7 +2,6 @@
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
-using osuTK.Graphics;
 
 namespace Project1.Game.Screens;
 
@@ -17,7 +16,7 @@ public partial class Background : CompositeDrawable
         [
             new Box
             {
-                Colour = new Color4(55, 55, 55, 255),
+                Colour = Style.Background,
                 RelativeSizeAxes = Axes.Both,
             },
             new ExitButton(),

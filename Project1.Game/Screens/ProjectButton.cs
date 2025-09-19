@@ -1,7 +1,6 @@
 ﻿using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.UserInterface;
-using osuTK.Graphics;
 
 namespace Project1.Game.Screens;
 
@@ -9,15 +8,15 @@ public partial class ProjectButton : BasicButton
 {
     public ProjectButton()
     {
-        this.Padding = new MarginPadding(10);
+        this.Padding = new MarginPadding(8);
         this.Masking = true;
         this.RelativeSizeAxes = Axes.Both;
-        this.BorderColour = Colour4.Black;
         this.BorderThickness = 14;
-        this.HoverColour = Color4.Gray;
-        this.BackgroundColour = new Color4(100, 100, 100, 255);
+        this.HoverColour = Style.Hover;
+        this.BorderColour = Style.Boarder;
+        this.BackgroundColour = Style.DrawableUnderlay1;
     }
-    
+
     protected override SpriteText CreateText()
     {
         return new SpriteText
@@ -26,7 +25,7 @@ public partial class ProjectButton : BasicButton
             Origin = Anchor.Centre,
             Anchor = Anchor.Centre,
             Font = FrameworkFont.Regular,
-            Colour = Colour4.Black,
+            Colour = Style.Text,
         };
     }
 }

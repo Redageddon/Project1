@@ -1,47 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using Newtonsoft.Json;
-using osu.Framework.Allocation;
+﻿using osu.Framework.Allocation;
 using osu.Framework.Screens;
+using Project1.Game.IO;
 
 namespace Project1.Game.Screens.Second;
 
 public partial class SecondScreen : Screen
 {
-    private DataGrid dataGrid;
-    private List<Habit> habits = [];
-    
+    private SecondScreenContent content = null!;
+
+    [Resolved]
+    private HabitStorage HabitStorage { get; set; } = null!;
+
     [BackgroundDependencyLoader]
     private void Load()
     {
-        this.InternalChildren = 
+        this.InternalChildren =
         [
             new Background(), 
             new BackButton(this.Exit), 
-            this.dataGrid = new DataGrid(40),
-            new ListControls(this.Add),
+            this.content = new SecondScreenContent(),
         ];
-
-        if (File.Exists("habits.json"))
-        {
-            this.habits = JsonConvert.DeserializeObject<List<Habit>>(File.ReadAllText("habits.json"));
-            this.dataGrid.AddRange(this.habits);
-        }
     }
 
-    public void Add(string habitType)
+    protected override void LoadComplete()
     {
-        Habit habit = new()
-        {
-            Value = habitType, 
-            Date = DateTime.Now,
-        };
-        
-        this.dataGrid.Add(habit);
-        this.habits.Add(habit);
-
-        string data = JsonConvert.SerializeObject(this.habits);
-        File.WriteAllText("habits.json", data);
+        base.LoadComplete();
+        this.HabitStorage.Load();
     }
 }
