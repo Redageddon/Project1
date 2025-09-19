@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
@@ -12,7 +13,7 @@ public class HabitStorage(Storage storage)
 {
     private const string Filename = "habits.json";
 
-    public readonly BindableList<Habit> Habits = [];
+    private readonly BindableList<Habit> Habits = [];
 
     public void Load()
     {
@@ -47,6 +48,16 @@ public class HabitStorage(Storage storage)
         writer.Write(json);
     }
 
+    public void BindCollectionChanged(NotifyCollectionChangedEventHandler onHabitsChanged)
+    {
+        this.Habits.BindCollectionChanged(onHabitsChanged, true);
+    }
+
+    public void UnbindAll()
+    {
+        this.Habits.UnbindAll();
+    }
+
     public void AddHabit(string name)
     {
         Habit habit = new()
@@ -56,6 +67,12 @@ public class HabitStorage(Storage storage)
         };
 
         this.Habits.Add(habit);
+        this.Save();
+    }
+    
+    public void RemoveHabit(Habit habit)
+    {
+        this.Habits.Remove(habit);
         this.Save();
     }
 }

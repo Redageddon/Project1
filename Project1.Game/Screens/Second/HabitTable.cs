@@ -58,7 +58,7 @@ public partial class HabitTable : CompositeDrawable
     protected override void LoadComplete()
     {
         base.LoadComplete();
-        this.HabitStorage.Habits.BindCollectionChanged(this.OnHabitsChanged, true);
+        this.HabitStorage.BindCollectionChanged(this.OnHabitsChanged);
     }
 
     private void OnHabitsChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -91,7 +91,7 @@ public partial class HabitTable : CompositeDrawable
 
     protected override void Dispose(bool isDisposing)
     {
-        this.HabitStorage?.Habits.UnbindAll();
+        this.HabitStorage.UnbindAll();
         base.Dispose(isDisposing);
     }
 }

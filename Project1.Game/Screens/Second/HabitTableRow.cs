@@ -91,8 +91,7 @@ public partial class HabitTableRow(Habit habit) : CompositeDrawable
     {
         if (e.Button == MouseButton.Right)
         {
-            this.HabitStorage.Habits.Remove(this.Habit);
-            this.HabitStorage.Save();
+            this.HabitStorage.RemoveHabit(this.Habit);
             
             return true;
         }
