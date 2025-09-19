@@ -1,6 +1,5 @@
 ﻿using osu.Framework.Allocation;
 using osu.Framework.Screens;
-using Project1.Game.IO;
 
 namespace Project1.Game.Screens.Third;
 
