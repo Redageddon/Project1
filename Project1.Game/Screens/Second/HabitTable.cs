@@ -15,6 +15,7 @@ public partial class HabitTable : CompositeDrawable
     private const float RowHeight = 50;
 
     private FillFlowContainer<HabitTableRow> rowContainer = null!;
+    private BasicScrollContainer scrollContainer = null!;
 
     [Resolved]
     private HabitStorage HabitStorage { get; set; } = null!;
@@ -38,7 +39,7 @@ public partial class HabitTable : CompositeDrawable
             {
                 RelativeSizeAxes = Axes.Both,
                 Padding = new MarginPadding { Top = RowHeight },
-                Child = new BasicScrollContainer
+                Child = this.scrollContainer = new BasicScrollContainer
                 {
                     RelativeSizeAxes = Axes.Both,
                     ScrollbarVisible = true,
@@ -70,7 +71,9 @@ public partial class HabitTable : CompositeDrawable
                 {
                     this.rowContainer.Add(new HabitTableRow(habit));
                 }
-
+                
+                this.ScheduleAfterChildren(() => this.scrollContainer.ScrollToEnd());
+                
                 break;
 
             case NotifyCollectionChangedAction.Remove:

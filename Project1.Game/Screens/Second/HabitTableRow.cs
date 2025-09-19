@@ -11,7 +11,7 @@ namespace Project1.Game.Screens.Second;
 
 public partial class HabitTableRow(Habit habit) : CompositeDrawable
 {
-    private Box backgroundBox = null!;
+    private Box left, right;
     
     [Resolved]
     private HabitStorage HabitStorage { get; set; } = null!;
@@ -26,15 +26,10 @@ public partial class HabitTableRow(Habit habit) : CompositeDrawable
 
         this.InternalChildren =
         [
-            this.backgroundBox = new Box
-            {
-                RelativeSizeAxes = Axes.Both,
-                Colour = Style.DrawableUnderlay2,
-            },
             new GridContainer
             {
                 RelativeSizeAxes = Axes.Both,
-                ColumnDimensions = 
+                ColumnDimensions =
                 [
                     new Dimension(), 
                     new Dimension(),
@@ -46,27 +41,47 @@ public partial class HabitTableRow(Habit habit) : CompositeDrawable
                         new Container
                         {
                             RelativeSizeAxes = Axes.Both,
-                            Padding = new MarginPadding { Horizontal = 10 },
-                            Child = new SpriteText
-                            {
-                                Text = this.Habit.Value,
-                                Font = FontUsage.Default.With(size: 20),
-                                Anchor = Anchor.Centre,
-                                Origin = Anchor.Centre,
-                                Truncate = true,
-                            },
+                            /*BorderColour = Style.Boarder,
+                            BorderThickness = 4,
+                            Masking = true,*/
+                            Children =
+                            [
+                                this.left = new Box
+                                {
+                                    RelativeSizeAxes = Axes.Both,
+                                    Colour = Style.DrawableUnderlay2,
+                                },
+                                new SpriteText
+                                {
+                                    Anchor = Anchor.Centre,
+                                    Origin = Anchor.Centre,
+                                    Text = this.Habit.Value,
+                                    Font = FontUsage.Default.With(size: 20),
+                                    Truncate = true,
+                                },
+                            ],
                         },
                         new Container
                         {
                             RelativeSizeAxes = Axes.Both,
-                            Padding = new MarginPadding { Horizontal = 10 },
-                            Child = new SpriteText
-                            {
-                                Text = this.Habit.Date.ToString("yyyy-MM-dd HH:mm"),
-                                Font = FontUsage.Default.With(size: 20),
-                                Anchor = Anchor.Centre,
-                                Origin = Anchor.Centre,
-                            },
+                            /*BorderColour = Style.Boarder,
+                            BorderThickness = 4,
+                            Masking = true,*/
+                            Children =
+                            [
+                                this.right = new Box
+                                {
+                                    RelativeSizeAxes = Axes.Both,
+                                    Colour = Style.DrawableUnderlay2,
+                                },
+                                new SpriteText
+                                {
+                                    Anchor = Anchor.Centre,
+                                    Origin = Anchor.Centre,
+                                    Text = this.Habit.Date.ToString("yyyy-MM-dd HH:mm"),
+                                    Font = FontUsage.Default.With(size: 20),
+                                },
+                            ],
                         },
                     },
                 },
@@ -76,14 +91,16 @@ public partial class HabitTableRow(Habit habit) : CompositeDrawable
 
     protected override bool OnHover(HoverEvent e)
     {
-        this.backgroundBox.FadeColour(Style.Hover, 150, Easing.OutQuint);
+        this.left.FadeColour(Style.Hover, 300, Easing.OutQuint);
+        this.right.FadeColour(Style.Hover, 300, Easing.OutQuint);
 
         return base.OnHover(e);
     }
 
     protected override void OnHoverLost(HoverLostEvent e)
     {
-        this.backgroundBox.FadeColour(Style.DrawableUnderlay2, 150, Easing.OutQuint);
+        this.left.FadeColour(Style.DrawableUnderlay2, 300, Easing.OutQuint);
+        this.right.FadeColour(Style.DrawableUnderlay2, 300, Easing.OutQuint);
         base.OnHoverLost(e);
     }
     
